@@ -1,0 +1,64 @@
+---
+title: "Cálculo de la entropía diferencial para diferentes PDFs"
+subtitle: "Teoría de la información"
+author: "Julio César Ramírez Pacheco"
+date: "`r Sys.Date()`"
+output:
+  rmdformats::readthedown:
+    highlight: kate
+    cards: false
+---
+
+```{r setup, include=FALSE}
+library(highcharter)
+
+# invalidate cache when the tufte version changes
+knitr::opts_chunk$set(tidy = FALSE, cache.extra = packageVersion('tufte'))
+options(htmltools.dir.version = FALSE)
+```
+
+
+
+
+# Introducción
+
+Continuando con la entropía diferencial de varibles aleatorias continuas, ahora nos concentraremos en el cálculo de la entropía diferencia $h(X)$ de algunas densidades continuas conocidad. Recordemos que la entropía diferencial de una variable aleatoria $X$ con función de densidad $f(x)$ está dada por:
+$$
+h(X) = -\int_{-\infty}^{+\infty}{f(x) \log(f(x)) \, dx}
+$$
+
+Y por lo tanto si queremos hallar la entropía diferencial para la variable aleatoria uniforme $\mathcal{U}(a,b)$  que está definida como:
+
+$$f(x) = \begin{cases}
+\frac{1}{b-a} & a < x < b\\
+0 & \mbox{en otro caso}
+\end{cases}
+$$
+
+entonces, el cálculo de su entropia diferencial debe ser efectuado de la siguiente forma; $h(\mathcal{U}(a,b)) = - \int_a^b{\frac{1}{b-a}\log(\frac{1}{b-a}), \, dx}$ y por lo tando, desarrollando esta ecuación, su entropía diferencial está dada por:
+
+$$
+\begin{align}
+h(X) = & -\int_{a}^b{\left(\frac{1}{b-a}\right) \log(\frac{1}{b-a}) \, dx}\\
+ = & -\left(\frac{1}{b-a}\right) \log(\frac{1}{b-a}) \times \int_a^b{dx}\\
+ = & - \left(\frac{1}{b-a}\right) \log(\frac{1}{b-a})\times (b-a)\\
+= & - \log(\frac{1}{b-a}) = \log(b-a)
+\end{align}
+$$
+
+Por lo tanto $h(\mathcal{U}(a,b)) = \log(b-a)$. Es importante notar, que la entropía diferencial, a diferencia de la entropia de Shannon ($H(X) = -\sum{p_k \log(p_k)}$) puede ser negativa. A continuación se hallará la entropía diferencial para diferentes variables aleatorias continuas conocidas.
+
+
+## Ejercicios.
+Una vez visto la forma de calcular la entropía para densidades continuas, el turno será para calcular la entropía diferencial de las siguientes densidades:
+
+
+1. $$f(x) = \begin{cases} \lambda \mbox{e}^{-\lambda x} & x \ge 0\\ 
+0 & \mbox{en otro caso}\end{cases}$$
+2. $$f(x) = \begin{cases}\frac{1}{2}\lambda \mbox{e}^{-\lambda |x|} & -\infty < x < \infty\\
+\end{cases}$$
+3. $$f(x) = \frac{1}{\sigma \sqrt{2 \pi}}\mbox{e}^{-(x-\mu)^2/2\sigma^2}, -\infty < x < \infty, \, \sigma >0$$
+4. $$f(x) = \begin{cases}\frac{1}{A\sqrt{A^2-x^2}} & -A < x < A\\
+0 & \mbox{en otro caso}\end{cases}, \; \; A>0$$
+
+
